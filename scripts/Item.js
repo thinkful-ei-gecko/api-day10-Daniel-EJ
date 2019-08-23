@@ -12,7 +12,8 @@ const Item = (function(){
     return {
       id: cuid(),
       name,
-      checked: false
+      checked: false,
+      error: false
     };
   };
 

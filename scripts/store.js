@@ -38,10 +38,21 @@ const store = (function(){
     return newItem;
   };
 
+  const getError = function(err) {
+    store.error = true;
+    alert(err);
+  }
+
+  const clearError = function(){
+    store.error = null
+  }
+
   return {
     items: [],
     hideCheckedItems: false,
     searchTerm: '',
+    error: false,
+    clearError: null,
 
     addItem,
     findById,
