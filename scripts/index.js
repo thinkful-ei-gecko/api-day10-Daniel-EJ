@@ -6,20 +6,23 @@ $(document).ready(function() {
   shoppingList.render();
 
   api.getItems()
-  .then(res => res.json())
-  .then((items) => {
-    items.forEach((item) => store.addItem(item));
-    shoppingList.render();
-  });
+    .then(res => res.json())
+    .then((items) => {
+      items.forEach((item) => store.addItem(item));
+      shoppingList.render();
+    });
 
   api.getItems()
-  .then(res => res.json())
-  .then((items) => {
-    const item = items[0];
-    return api.updateItem(item.id, { name: 'foo'});
-  })
-  .then(res => res.json())
-  .then(() => console.log('updated!'));
-
+    .then(res => res.json())
+    .then((items) => {
+      const storeItem = store.items[0];
+      shoppingList.handleEditShoppingItemSubmit();
+      console.log('current name: ' + storeItem.name);
+      console.log('new name: ' + storeItem.name);
+      const item = items[0];
+      return api.updateItem(item.id, { name: 'foo'})
+    .then(res => res.json())
+    .then(() => console.log('updated!'));
+  });
 });
 
